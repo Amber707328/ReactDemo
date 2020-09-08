@@ -1,0 +1,22 @@
+.box{
+    background-color: #3690FF;
+    width: 100%;
+    height: 100%;
+}
+.list,.addForm{
+    width: 90%;
+    margin:0 auto;
+}
+.addForm textarea,.addForm button{
+    width: 100%;
+}
+.list>div{
+    background-color: white;
+    margin:10px auto;
+    padding: 5px;
+}
+.list>div>p{
+    color: grey;
+    font-size: 14px;
+    text-align: left;
+}
