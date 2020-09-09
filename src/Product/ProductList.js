@@ -2,6 +2,8 @@ import React from 'react';
 // import Axios from "../Axios";//导入封装的axios
 import api from "../Api";
 import 'whatwg-fetch'
+import {Link,Route} from "react-router-dom";
+import ShowDetail from '../ShowDetail'
 class ProductList extends React.Component {
     // 数据请求回来后，在构造函数里进行页面渲染
     constructor() {
@@ -31,8 +33,12 @@ class ProductList extends React.Component {
             }
         }).then(function (response) {
             return response.json()
-        }).then(function (json) {
+        }).then((json)=> {
             console.log("通过fetch请求的数据",json)
+            //向页面渲染数据
+            this.setState({
+                list:json.data.data
+            })
         }).catch(function (ex) {
             console.log(ex)
         })
@@ -40,11 +46,15 @@ class ProductList extends React.Component {
     render() {
         //把请求回来的数组里面的值显示出来，用map遍历每个数据。这样才能显示
         let list=this.state.list.map((item,index)=>{
-            return <div key={index}>{item.cancelreason}</div>
+            //点击每个项，进入ShowDetail组件。这里就需要传递当前点击的这个项的id（路由传值）
+            //return <div key={index}><Link to={"/Product/ShowDetail/"+item.patientactivityTitle}>id:{item.patientactivityTitle}</Link>{item.cancelreason}</div>
+            return <div key={index}><Link to={{pathname:"/Product/ShowDetail",query:{id:item.patientactivityTitle}}}>id:{item.patientactivityTitle}</Link>{item.cancelreason}</div>
         })
         return (
             <div>
                 {list}
+                {/*子路由的写法*/}
+                <Route path="/Product/ShowDetail" component={ShowDetail}></Route>
             </div>
         );
     }

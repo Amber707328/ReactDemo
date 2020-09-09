@@ -7,7 +7,9 @@ class CommentBox extends React.Component {
         // 构造函数要使用props属性，必须带props参数。否则this.props是取不到值的
         super(props);
         this.state = {
-            commentList: this.props.data
+            commentList:  [{"author":"张三","date":"2020-9-9","content":"hahhahhha"},
+               {"author":"李四","date":"2010-9-9","content":"hahhahhha"},
+               {"author":"王五","date":"2000-9-9","content":"hahhahhha"},]
         }
     }
     addContent(obj){
